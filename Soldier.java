@@ -4,13 +4,14 @@ public class Soldier extends Russian {
 	private String rank;
 	private String branchOfService;	
 	private int yearsServed;
+	private int x1;
+	private int y1;
 
 	public Soldier(int a, String n, String gen, Graphics g, int x1, int y1, String r, String b, int y) {
 		super(a, n, gen, g, x1, y1);
 		this.rank = r;
 		this.branchOfService = b;
 		this.yearsServed = y;
-		this.drawRussian(g, x1, y1);
 	}
 
 	public String getRank()  {return rank; }
