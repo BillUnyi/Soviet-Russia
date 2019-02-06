@@ -16,7 +16,7 @@ public class General extends Soldier {
 		super.greeting(this.getRank(), this.getBranchOfService(), this.getYearsServed());
 	}
 	
-	public void drawGeneral(Graphics g) {
-		super.drawSoldier(g, this.getX1(), this.getY1());
+	public void drawRussian(Graphics g) {
+		super.drawRussian(g);
 	}
 }
