@@ -11,7 +11,6 @@ public class Soldier extends Russian {
 		this.branchOfService = b;
 		this.yearsServed = y;
 		this.drawRussian(g, x1, y1);
-		this.greeting(r, b, y);
 	}
 
 	public String getRank()  {return rank; }
