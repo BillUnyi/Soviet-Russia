@@ -50,7 +50,7 @@ public class Russian {
 		g.setColor(color.BLACK);
 		g.fillRect(this.getX1(), this.getY1() + 44, 20, 25);
 		
-		g.setColor(color.green);
+		g.setColor(color.white);
 		g.fillRect(this.getX1() +1, this.getY1() + 45, 18, 23);
 		
 		g.setColor(color.black);

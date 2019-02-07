@@ -5,8 +5,8 @@ public class Soldier extends Russian {
 	private String branchOfService;	
 	private int yearsServed;
 
-	public Soldier(int a, String n, String gen, Graphics g, int x1, int y1, String r, String b, int y) {
-		super(a, n, gen, g, x1, y1);
+	public Soldier(int a, String n, String gen, Graphics g, Color c, int x1, int y1, String r, String b, int y) {
+		super(a, n, gen, g, c, x1, y1);
 		this.rank = r;
 		this.branchOfService = b;
 		this.yearsServed = y;
@@ -26,8 +26,7 @@ public class Soldier extends Russian {
 		System.out.println();
 	}
 	
-	public void drawRussian(Graphics g) {
+	public void drawSoldier(Graphics g) {
 		super.drawRussian(g);
 	}
-	
 }
