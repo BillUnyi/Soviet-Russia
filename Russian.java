@@ -35,25 +35,48 @@ public class Russian {
 		System.out.println("Hello Comrade, my name is " + this.name + ". i am a " + this.gender + ". I am " + this.age + " years old.\n");
 	}
 	
-	public void drawRussian(Graphics g) {
-		g.fillOval(this.getX1(), this.getY1(), 20, 20);
-		
-		g.setColor(new Color(234, 221, 157));
-		g.fillOval(this.getX1() +1, this.getY1()+1, 18, 18);
-		
-		g.setColor(color.BLACK);
-		g.fillRect(this.getX1(), this.getY1() + 20, 20, 25);
-		
-		g.setColor(color.WHITE);
-		g.fillRect(this.getX1() +1, this.getY1() + 21, 18, 23);
-		
-		g.setColor(color.BLACK);
-		g.fillRect(this.getX1(), this.getY1() + 44, 20, 25);
-		
-		g.setColor(color.white);
-		g.fillRect(this.getX1() +1, this.getY1() + 45, 18, 23);
-		
-		g.setColor(color.black);
-		g.drawLine(this.getX1() +9, this.getY1() +52, this.getX1() +9, this.getY1() +68);
-	}
+	public void drawFace(Graphics g) {
+        g.setColor(Color.black);
+        Polygon faceOutline = new Polygon();
+        faceOutline.addPoint(this.getX1() - 1, this.getY1() + 5);
+        faceOutline.addPoint(this.getX1() + 9, this.getY1());
+        faceOutline.addPoint(this.getX1() + 20, this.getY1() + 5);
+        faceOutline.addPoint(this.getX1() + 18, this.getY1() + 20);
+        faceOutline.addPoint(this.getX1() + 9, this.getY1() + 25);
+        faceOutline.addPoint(this.getX1() + 1, this.getY1() + 20);
+        g.fillPolygon(faceOutline);
+        g.setColor(this.getColor());
+        Polygon face = new Polygon();
+        face.addPoint(this.getX1() + 1, this.getY1() + 6);
+        face.addPoint(this.getX1() + 9, this.getY1() + 2);
+        face.addPoint(this.getX1() + 18, this.getY1() + 6);
+        face.addPoint(this.getX1() + 17, this.getY1() + 19);
+        face.addPoint(this.getX1() + 9, this.getY1() + 23);
+        face.addPoint(this.getX1() + 2, this.getY1() + 19);
+        g.fillPolygon(face);
+        g.setColor(Color.black);
+    }
+
+    public void drawTorso(Graphics g, Color c) {
+        g.setColor(color.black);
+        g.fillRect(this.getX1(), this.getY1() + 20, 20, 25);
+        g.setColor(c);
+        g.fillRect(this.getX1() +1, this.getY1() + 21, 18, 23);
+        g.setColor(color.black);
+    }
+
+    public void drawLegs(Graphics g, Color c) {
+        g.setColor(color.black);
+        g.fillRect(this.getX1(), this.getY1() + 44, 20, 25);
+        g.setColor(c);
+        g.fillRect(this.getX1() +1, this.getY1() + 45, 18, 23);
+        g.setColor(color.black);
+        g.drawLine(this.getX1() +9, this.getY1() +52, this.getX1() +9, this.getY1() +68);
+    }
+    
+    public void drawRussian(Graphics g, Color c) {
+    	this.drawLegs(g, c);
+    	this.drawTorso(g, c);
+    	this.drawFace(g);
+    }
 }
