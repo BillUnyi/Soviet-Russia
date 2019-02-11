@@ -17,6 +17,7 @@ public class SovietUnion {
         this.russians = new Russian [num];
         setSkinColors();
         setRanks();
+        setBranches();
 
         Random random = new Random();
         String gender = "";
@@ -381,6 +382,7 @@ public class SovietUnion {
         spaceForceRanks[20] = "General";
         spaceForceRanks[21] = "General Of The Space Force";
 
+        ranks = new String[6][29];
         ranks[0] = armyRanks;
         ranks[1] = navyRanks;
         ranks[2] = marineRanks;
