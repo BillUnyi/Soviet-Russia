@@ -3,8 +3,8 @@ import java.awt.*;
 public class General extends Soldier {
     private int numOfTroops;
 
-    public General(int a, String n, String gen, Graphics g, Color sc, Color uc, int x1, int y1, String r, String b, int y, int numOfT) {
-        super(a, n, gen, g, sc, uc, x1, y1, r, b, y);
+    public General(int a, String fn, String ln, String gen, Graphics g, Color sc, Color uc, int x1, int y1, String r, String b, int y, int numOfT) {
+        super(a, fn, ln, gen, g, sc, uc, x1, y1, r, b, y);
         this.numOfTroops = numOfT;
     }
 

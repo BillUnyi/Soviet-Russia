@@ -2,7 +2,8 @@ import java.awt.*;
 
 public class Russian {
     private int age;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String gender;
     private Color skinColor;
     private Color torsoColor;
@@ -10,9 +11,10 @@ public class Russian {
     private int x1;
     private int y1;
 
-    public Russian(int a, String n, String gen, Graphics g, Color sc, Color tc, Color lc, int x1, int y1) {
+    public Russian(int a, String fn, String ln, String gen, Graphics g, Color sc, Color tc, Color lc, int x1, int y1) {
         this.age = a;
-        this.name = n;
+        this.firstName = fn;
+        this.lastName = ln;
         this.gender = gen;
         this.skinColor = sc;
         this.torsoColor = tc;
@@ -22,7 +24,8 @@ public class Russian {
     }
 
     public int getAge() { return age; }
-    public String getName() { return name; }
+    public String getFirstName() { return firstName; }
+    public String getLastName() { return lastName; }
     public String getGender() { return gender; }
     public Color getSkinColor() { return skinColor; }
     public Color getTorsoColor() { return torsoColor; }
@@ -31,7 +34,8 @@ public class Russian {
     public int getY1() { return y1; }
 
     public void setAge(int age) { this.age = age; }
-    public void setName(String name) { this.name = name; }
+    public void setFirstName(String name) { this.firstName = name; }
+    public void setLastName(String name) { this.lastName = name; }
     public void setGender(String gender) { this.gender = gender; }
     public void setSkinColor(Color skinColor) { this.skinColor = skinColor; }
     public void setTorsoColor(Color torsoColor) { this.torsoColor = torsoColor; }
@@ -39,8 +43,8 @@ public class Russian {
     public void setX1(int x1) { this.x1 = x1; }
     public void setY1(int y1) { this.y1	= y1; }
 
-    public void greeting() {
-        System.out.println("Hello Comrade, my name is " + this.name + ". i am a " + this.gender + ". I am " + this.age + " years old.\n");
+    public String greeting() {
+        return "Hello Comrade, my name is " + getFirstName() + " " + getLastName() + ". I am a " + this.gender + " and am " + this.age + " years old.";
     }
 
     public void drawFace(Graphics g) {

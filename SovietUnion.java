@@ -28,7 +28,7 @@ public class SovietUnion {
             else {
                 gender = "Female";
             }
-            russians[i] = new Russian(random.nextInt(96) + 5, "Test", gender, g, skinColors[random.nextInt(12)], Color.gray,
+            russians[i] = new Russian(random.nextInt(96) + 5, "Test", "Test", gender, g, skinColors[random.nextInt(12)], Color.gray,
                     Color.darkGray, random.nextInt(880) + 50, random.nextInt(520) + 10);
         }
         Color uniformColor = new Color(59, 119, 58);
@@ -43,7 +43,7 @@ public class SovietUnion {
             }
             branch = createBranch();
             rank = createRank(branch);
-            russians[i] = new Soldier(random.nextInt(33) + 18, "Test", gender, g, skinColors[random.nextInt(12)], uniformColor,
+            russians[i] = new Soldier(random.nextInt(33) + 18, "Test", "Test", gender, g, skinColors[random.nextInt(12)], uniformColor,
                     random.nextInt(880) + 50, random.nextInt(520) + 100, rank,
                     branch, random.nextInt(33));
         }
@@ -54,7 +54,7 @@ public class SovietUnion {
         else {
             gender = "Female";
         }
-        russians[num - 1] = new General(random.nextInt(41) + 40, "Test", gender, g, skinColors[random.nextInt(12)], generalColor,
+        russians[num - 1] = new General(random.nextInt(41) + 40, "Test", "Test", gender, g, skinColors[random.nextInt(12)], generalColor,
                 random.nextInt(880) + 50, random.nextInt(520) + 100, "General", "Space Force",
                 random.nextInt(52) + 10, random.nextInt(900000) + 100000);
     }

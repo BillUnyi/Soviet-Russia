@@ -6,10 +6,8 @@ import java.awt.*;
 	that might be necessary to the Soldier class.
 ------------------------------------------------------------------------------------
 	Camo Color possibility: (59, 119, 58)
-
 	Rank options: Make an array of ranks and randomly pick a rank and assign it to
 				 	that soldier.
-
 	ANY NEW IDEAS PLEASE STATE BELOW THIS LINE
 ------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------
@@ -22,8 +20,8 @@ public class Soldier extends Russian {
     private int yearsServed;
     private Color uniformColor;
 
-    public Soldier(int a, String n, String gen, Graphics g, Color sc, Color uc, int x1, int y1, String r, String b, int y) {
-        super(a, n, gen, g, sc, uc, uc, x1, y1);
+    public Soldier(int a, String fn, String ln, String gen, Graphics g, Color sc, Color uc, int x1, int y1, String r, String b, int y) {
+        super(a, fn, ln, gen, g, sc, uc, uc, x1, y1);
         this.uniformColor = uc;
         this.rank = r;
         this.branchOfService = b;
@@ -40,10 +38,8 @@ public class Soldier extends Russian {
     public void setYearsServed(int yearsServed) { this.yearsServed = yearsServed; }
     public void setUniformColor(Color uniformColor) { this.uniformColor = uniformColor; }
 
-    public void greeting(String rank, String branchOfService, int yearsServed) {
-        super.greeting();
-        System.out.println(rank + " is my rank, i have served " + yearsServed + " years in the " + branchOfService);
-        System.out.println();
+    public String greeting() {
+        return super.greeting() + rank + " is my rank, i have served " + yearsServed + " years in the " + branchOfService;
     }
 
     public void drawRussian(Graphics g) {
