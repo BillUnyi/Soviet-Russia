@@ -20,8 +20,8 @@ public class Soldier extends Russian {
     private int yearsServed;
     private Color uniformColor;
 
-    public Soldier(int a, String fn, String ln, String gen, Graphics g, Color sc, Color uc, int x1, int y1, String r, String b, int y) {
-        super(a, fn, ln, gen, g, sc, uc, uc, x1, y1);
+    public Soldier(int a, String fn, String ln, String gen, Graphics g, Color sc, Color uc, Color hc, int x1, int y1, String r, String b, int y) {
+        super(a, fn, ln, gen, g, sc, uc, uc, hc, x1, y1);
         this.uniformColor = uc;
         this.rank = r;
         this.branchOfService = b;
@@ -39,11 +39,33 @@ public class Soldier extends Russian {
     public void setUniformColor(Color uniformColor) { this.uniformColor = uniformColor; }
 
     public String greeting() {
-        return super.greeting() + rank + " is my rank, i have served " + yearsServed + " years in the " + branchOfService;
+        return super.greeting() + " I am a " + getRank() + " in the " + getBranchOfService() + " and I've served for " + Integer.toString(getYearsServed()) + " years.";
     }
 
-    public void drawRussian(Graphics g) {
-        super.drawRussian(g);
+    public void drawRussian(Graphics2D g) {
+        this.drawTorso(g);
+        this.drawShoes(g);
+        this.drawLegs(g);
+        this.drawFace(g);
+        this.drawHair(g);
+        this.drawHat(g);
+    }
 
+    public void drawHat(Graphics2D g) {
+        g.setColor(uniformColor);
+        Polygon hat = new Polygon();
+        hat.addPoint(getX1() - 3, getY1() - 2);
+        hat.addPoint(getX1() + 22, getY1() + 2);
+        hat.addPoint(getX1() + 22, getY1() + 4);
+        hat.addPoint(getX1() - 1, getY1() + 3);
+        g.fillPolygon(hat);
+        g.setColor(Color.black);
+        g.drawPolygon(hat);
+    }
+
+    public void drawHair(Graphics2D g) {
+        if (getGender().equals("Female")) {
+
+        }
     }
 }

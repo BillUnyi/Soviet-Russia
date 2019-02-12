@@ -7,56 +7,59 @@ public class SovietUnion {
     private Color skinColors[];
     private String branches[];
     private String ranks[][];
+    private String maleNames[];
+    private String femaleNames[];
+    private String lastNames[];
     private Color background;
-    private int num;
+    private int numRussians;
+    private int numSoldiers;
 
-    public SovietUnion(int n, Graphics2D g) {
+    public SovietUnion(int nr, int ns, Graphics2D g) {
 
-        this.num = n;
+        this.numRussians = nr;
+        this.numSoldiers = ns;
         this.background = new Color(40, 40, 40);
-        this.russians = new Russian [num];
+        this.russians = new Russian [numRussians + numSoldiers + 1];
         setSkinColors();
         setRanks();
         setBranches();
+        setMaleNames();
+        setFemaleNames();
+        setLastNames();
 
         Random random = new Random();
         String gender = "";
-        for (int i = 0; i < num / 2; i++) {
-            if (random.nextInt(2) == 0) {
-                gender = "Male";
-            }
-            else {
-                gender = "Female";
-            }
-            russians[i] = new Russian(random.nextInt(96) + 5, "Test", "Test", gender, g, skinColors[random.nextInt(12)], Color.gray,
-                    Color.darkGray, random.nextInt(880) + 50, random.nextInt(520) + 10);
+        for (int i = 0; i < numRussians; i++) {
+            gender = createGender();
+            russians[i] = new Russian(random.nextInt(96) + 5, createFirstName(gender), createLastName(), createGender(), g, skinColors[random.nextInt(12)], Color.gray,
+                    Color.darkGray, skinColors[11], random.nextInt(400) + 100, random.nextInt(230) + 300);
         }
         Color uniformColor = new Color(59, 119, 58);
         String branch = "";
         String rank = "";
-        for (int i = num / 2; i < num - 1; i++) {
-            if (random.nextInt(2) == 0) {
-                gender = "Male";
-            }
-            else {
-                gender = "Female";
-            }
+        int age;
+        int counter = 0;
+        int coloumn = 0;
+        for (int i = 0; i < numSoldiers; i++) {
+            gender = createGender();
             branch = createBranch();
             rank = createRank(branch);
-            russians[i] = new Soldier(random.nextInt(33) + 18, "Test", "Test", gender, g, skinColors[random.nextInt(12)], uniformColor,
-                    random.nextInt(880) + 50, random.nextInt(520) + 100, rank,
-                    branch, random.nextInt(33));
+            age = random.nextInt(33) + 18;
+            russians[i + numRussians] = new Soldier(age, createFirstName(gender), createLastName(), gender, g, skinColors[random.nextInt(12)], uniformColor,
+                    Color.gray, 700 + 25 * counter + 12 * (coloumn % 2), 320 + 50 * coloumn, rank,
+                    branch, random.nextInt(age - 17));
+            counter++;
+            if (counter >= 10) {
+                counter = 0;
+                coloumn++;
+            }
         }
         Color generalColor = new Color(245, 245, 220);
-        if (random.nextInt(2) == 0) {
-            gender = "Male";
-        }
-        else {
-            gender = "Female";
-        }
-        russians[num - 1] = new General(random.nextInt(41) + 40, "Test", "Test", gender, g, skinColors[random.nextInt(12)], generalColor,
-                random.nextInt(880) + 50, random.nextInt(520) + 100, "General", "Space Force",
-                random.nextInt(52) + 10, random.nextInt(900000) + 100000);
+        gender = createGender();
+        age = random.nextInt(41) + 40;
+        russians[russians.length - 1] = new General(age, createFirstName(gender), createLastName(), gender, g, skinColors[random.nextInt(12)], generalColor,
+                Color.darkGray, 819, 240, "Six Star General", createBranch(),
+                random.nextInt(age - 27) + 10, random.nextInt(900000) + 100000);
     }
 
     public void drawSovietUnion(Graphics2D g) {
@@ -66,9 +69,21 @@ public class SovietUnion {
         drawRussia(g);
         drawSickle(g);
         drawHammer(g);
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < russians.length; i++) {
             russians[i].drawRussian(g);
+            System.out.println(russians[i].greeting());
         }
+    }
+
+    public void textBox(int num, Graphics2D g) {
+        g.setColor(Color.darkGray);
+        g.fillRect(20, 20, 1035, 15);
+        g.setColor(Color.black);
+        g.drawRect(20, 20, 1035,  15);
+        g.setColor(Color.white);
+        Font font = new Font("Font", Font.ITALIC, 8);
+        g.setFont(font);
+        g.drawString(russians[num].greeting(), 25, 30);
     }
 
     public void drawRussia(Graphics2D g) {
@@ -198,6 +213,34 @@ public class SovietUnion {
     public String createBranch() {
         Random random = new Random();
         return branches[random.nextInt(6)];
+    }
+
+    public String createGender() {
+        Random random = new Random();
+        if (random.nextInt(2) == 0) {
+            return "Male";
+        }
+        return "Female";
+    }
+
+    public String createFirstName(String gender) {
+        Random random = new Random();
+        switch (gender) {
+            case "Male" : {
+                return maleNames[random.nextInt(30)];
+            }
+            case "Female" : {
+                return femaleNames[random.nextInt(30)];
+            }
+            default : {
+                return "Genderless";
+            }
+        }
+    }
+
+    public String createLastName() {
+        Random random = new Random();
+        return lastNames[random.nextInt(20)];
     }
 
     public void setSkinColors() {
@@ -400,4 +443,105 @@ public class SovietUnion {
         branches[4] = "Air Force";
         branches[5] = "Space Force";
     }
+
+    public void setMaleNames() {
+        maleNames = new String[30];
+        maleNames[0] = "Aleksander";
+        maleNames[1] = "Maxim";
+        maleNames[2] = "Artem";
+        maleNames[3] = "Mikhail";
+        maleNames[4] = "Daniil";
+        maleNames[5] = "Ivan";
+        maleNames[6] = "Dmitri";
+        maleNames[7] = "Kirill";
+        maleNames[8] = "Andrei";
+        maleNames[9] = "Igor";
+        maleNames[10] = "Ilya";
+        maleNames[11] = "Timofei";
+        maleNames[12] = "Alexei";
+        maleNames[13] = "Matvei";
+        maleNames[14] = "Nikita";
+        maleNames[15] = "Vladimir";
+        maleNames[16] = "Roman";
+        maleNames[17] = "Mark";
+        maleNames[18] = "Yaroslav";
+        maleNames[19] = "Fyodor";
+        maleNames[20] = "Sergei";
+        maleNames[21] = "Lev";
+        maleNames[22] = "Stepan";
+        maleNames[23] = "Konstantin";
+        maleNames[24] = "Vladislav";
+        maleNames[25] = "Georgi";
+        maleNames[26] = "Nikolai";
+        maleNames[27] = "Gleb";
+        maleNames[28] = "Timur";
+        maleNames[29] = "Pavel";
+
+    }
+
+    public void setFemaleNames() {
+        femaleNames = new String[30];
+        femaleNames[0] = "Sofia";
+        femaleNames[1] = "Maria";
+        femaleNames[2] = "Anastasia";
+        femaleNames[3] = "Anna";
+        femaleNames[4] = "Elizaveta";
+        femaleNames[5] = "Viktoria";
+        femaleNames[6] = "Darya";
+        femaleNames[7] = "Polina";
+        femaleNames[8] = "Varvara";
+        femaleNames[9] = "Alisa";
+        femaleNames[10] = "Aleksandra";
+        femaleNames[11] = "Yekaterina";
+        femaleNames[12] = "Ksenia";
+        femaleNames[13] = "Arina";
+        femaleNames[14] = "Veronika";
+        femaleNames[15] = "Vasilia";
+        femaleNames[16] = "Valeria";
+        femaleNames[17] = "Milana";
+        femaleNames[18] = "Uliana";
+        femaleNames[19] = "Yeva";
+        femaleNames[20] = "Kira";
+        femaleNames[21] = "Vera";
+        femaleNames[22] = "Margarita";
+        femaleNames[23] = "Aliena";
+        femaleNames[24] = "Kristina";
+        femaleNames[25] = "Alina";
+        femaleNames[26] = "Taisia";
+        femaleNames[27] = "Olga";
+        femaleNames[28] = "Diana";
+        femaleNames[29] = "Yulia";
+
+    }
+
+    public void setLastNames() {
+        lastNames = new String[20];
+        lastNames[0] = "Ivanov";
+        lastNames[1] = "Smirnov";
+        lastNames[2] = "Kuznetsov";
+        lastNames[3] = "Popov";
+        lastNames[4] = "Vasiliev";
+        lastNames[5] = "Petrov";
+        lastNames[6] = "Sokolov";
+        lastNames[7] = "Mikhailov";
+        lastNames[8] = "Fedorov";
+        lastNames[9] = "Morozov";
+        lastNames[10] = "Volkov";
+        lastNames[11] = "Alexeev";
+        lastNames[12] = "Lebedev";
+        lastNames[13] = "Semenov";
+        lastNames[14] = "Egorov";
+        lastNames[15] = "Pavlov";
+        lastNames[16] = "Kozlov";
+        lastNames[17] = "Stepanov";
+        lastNames[18] = "Nikolaev";
+        lastNames[19] = "Orlov";
+
+    }
+
+    public int getNumRussians() { return numRussians; }
+    public int getNumSoldiers() { return numSoldiers; }
+
+    public void setNumRussians(int numRussians) { this.numRussians = numRussians; }
+    public void setNumSoldiers(int numSoldiers) { this.numSoldiers = numSoldiers; }
 }

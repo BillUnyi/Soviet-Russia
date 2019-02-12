@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.applet.*;
+import java.util.Scanner;
 
 public class SovietTest extends Applet {
 
@@ -9,7 +10,19 @@ public class SovietTest extends Applet {
 
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
-        SovietUnion russia = new SovietUnion(100, g2);
+        Scanner input = new Scanner(System.in);
+        SovietUnion russia = new SovietUnion(50, 50, g2);
         russia.drawSovietUnion(g2);
+        int num;
+        boolean stop = false;
+        while(!stop) {
+            num = input.nextInt();
+            if ((num >= 0) && (num < russia.getNumRussians() + russia.getNumSoldiers() + 1)) {
+                russia.textBox(num, g2);
+            }
+            else if (num < 0) {
+                stop = true;
+            }
+        }
     }
 }
