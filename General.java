@@ -21,7 +21,7 @@ public class General extends Soldier {
         this.drawShoes(g);
         this.drawLegs(g);
         this.drawFace(g);
-        //this.drawHair(g);
+        this.drawHair(g);
         this.drawHat(g);
     }
 

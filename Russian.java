@@ -104,9 +104,9 @@ public class Russian {
     }
 
     public void drawHair(Graphics2D g) {
+    	g.setColor(hairColor);
+        Polygon hair = new Polygon();
         if (getGender().equals("Female")) {
-            g.setColor(hairColor);
-            Polygon hair = new Polygon();
             hair.addPoint(this.getX1() + 20, this.getY1() + 5);
             hair.addPoint(this.getX1() + 10, this.getY1() + 7);
             hair.addPoint(this.getX1(), this.getY1() + 5);
@@ -122,7 +122,12 @@ public class Russian {
             g.drawPolygon(hair);
         }
         else {
-
+        	hair.addPoint(this.getX1() + 20, this.getY1() + 5);
+            hair.addPoint(this.getX1() + 10, this.getY1() + 7);
+            hair.addPoint(this.getX1(), this.getY1() + 5);
+            g.fillPolygon(hair);
+            g.setColor(Color.black);
+            g.drawPolygon(hair);
         }
     }
 

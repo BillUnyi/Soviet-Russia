@@ -71,7 +71,6 @@ public class SovietUnion {
         drawHammer(g);
         for (int i = 0; i < russians.length; i++) {
             russians[i].drawRussian(g);
-            System.out.println(russians[i].greeting());
         }
     }
 
