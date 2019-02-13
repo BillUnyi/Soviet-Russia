@@ -64,10 +64,10 @@ public class Soldier extends Russian {
     }
 
     public void drawHair(Graphics2D g) {
-    	g.setColor(getHairColor());
+        g.setColor(getHairColor());
         Polygon hair = new Polygon();
         if (getGender().equals("Male")) {
-        	hair.addPoint(this.getX1() + 20, this.getY1() + 5);
+            hair.addPoint(this.getX1() + 20, this.getY1() + 5);
             hair.addPoint(this.getX1() + 10, this.getY1() + 7);
             hair.addPoint(this.getX1(), this.getY1() + 5);
             hair.addPoint(this.getX1() + 9, this.getY1());
@@ -76,7 +76,14 @@ public class Soldier extends Russian {
             g.drawPolygon(hair);
         }
         else {
-        	
+            hair.addPoint(this.getX1() + 20, this.getY1() + 5);
+            hair.addPoint(this.getX1() + 10, this.getY1());
+            hair.addPoint(this.getX1() - 1, this.getY1() + 5);
+            hair.addPoint(this.getX1() + 1, this.getY1() + 15);
+            hair.addPoint(this.getX1() + 10, this.getY1() + 7);
+            g.fillPolygon(hair);
+            g.setColor(Color.black);
+            g.drawPolygon(hair);
         }
     }
 }

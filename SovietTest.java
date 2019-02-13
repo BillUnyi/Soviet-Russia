@@ -11,7 +11,7 @@ public class SovietTest extends Applet {
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         Scanner input = new Scanner(System.in);
-        SovietUnion russia = new SovietUnion(5, 50, g2);
+        SovietUnion russia = new SovietUnion(50, 50, g2);
         russia.drawSovietUnion(g2);
         int num;
         boolean stop = false;

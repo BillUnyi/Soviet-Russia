@@ -5,6 +5,8 @@ public class SovietUnion {
 
     private Russian russians[];
     private Color skinColors[];
+    private Color hairColors[];
+    private Color clothingColors[];
     private String branches[];
     private String ranks[][];
     private String maleNames[];
@@ -21,6 +23,8 @@ public class SovietUnion {
         this.background = new Color(40, 40, 40);
         this.russians = new Russian [numRussians + numSoldiers + 1];
         setSkinColors();
+        setHairColors();
+        setClothingColors();
         setRanks();
         setBranches();
         setMaleNames();
@@ -31,8 +35,9 @@ public class SovietUnion {
         String gender = "";
         for (int i = 0; i < numRussians; i++) {
             gender = createGender();
-            russians[i] = new Russian(random.nextInt(96) + 5, createFirstName(gender), createLastName(), createGender(), g, skinColors[random.nextInt(12)], Color.gray,
-                    Color.darkGray, skinColors[11], random.nextInt(400) + 100, random.nextInt(230) + 300);
+            russians[i] = new Russian(random.nextInt(96) + 5, createFirstName(gender), createLastName(), createGender(),
+                    g, skinColors[random.nextInt(12)], createClothingColor(), createClothingColor(), createHairColor(),
+                    random.nextInt(400) + 100, random.nextInt(230) + 300);
         }
         Color uniformColor = new Color(59, 119, 58);
         String branch = "";
@@ -45,8 +50,7 @@ public class SovietUnion {
             branch = createBranch();
             rank = createRank(branch);
             age = random.nextInt(33) + 18;
-            russians[i + numRussians] = new Soldier(age, createFirstName(gender), createLastName(), gender, g, skinColors[random.nextInt(12)], uniformColor,
-                    Color.gray, 700 + 25 * counter + 12 * (coloumn % 2), 320 + 50 * coloumn, rank,
+            russians[i + numRussians] = new Soldier(age, createFirstName(gender), createLastName(), gender, g, skinColors[random.nextInt(12)], uniformColor, createHairColor(), 700 + 25 * counter + 12 * (coloumn % 2), 320 + 50 * coloumn, rank,
                     branch, random.nextInt(age - 17));
             counter++;
             if (counter >= 10) {
@@ -57,8 +61,7 @@ public class SovietUnion {
         Color generalColor = new Color(245, 245, 220);
         gender = createGender();
         age = random.nextInt(41) + 40;
-        russians[russians.length - 1] = new General(age, createFirstName(gender), createLastName(), gender, g, skinColors[random.nextInt(12)], generalColor,
-                Color.darkGray, 819, 240, "Six Star General", createBranch(),
+        russians[russians.length - 1] = new General(age, createFirstName(gender), createLastName(), gender, g, skinColors[random.nextInt(12)], generalColor, createHairColor(), 819, 240, "Six Star General", createBranch(),
                 random.nextInt(age - 27) + 10, random.nextInt(900000) + 100000);
     }
 
@@ -66,6 +69,7 @@ public class SovietUnion {
         g.setColor(background);
         g.fillRect(0, 0, 1920, 1080);
         g.setColor(Color.black);
+        drawGrid(g);
         drawRussia(g);
         drawSickle(g);
         drawHammer(g);
@@ -182,6 +186,16 @@ public class SovietUnion {
         g.setColor(Color.black);
     }
 
+    public void drawGrid(Graphics2D g) {
+        g.setColor(Color.black);
+        for (int i = 50; i < 1920; i += 50) {
+            g.drawLine(i, 0, i, 1080);
+        }
+        for (int i = 50; i < 1080; i += 50) {
+            g.drawLine(0, i, 1920, i);
+        }
+    }
+
     public String createRank(String branch) {
         Random random = new Random();
         switch (branch) {
@@ -242,6 +256,16 @@ public class SovietUnion {
         return lastNames[random.nextInt(20)];
     }
 
+    public Color createHairColor() {
+        Random random = new Random();
+        return hairColors[random.nextInt(24)];
+    }
+
+    public Color createClothingColor() {
+        Random random = new Random();
+        return clothingColors[random.nextInt(32)];
+    }
+
     public void setSkinColors() {
         skinColors = new Color[12];
         skinColors[0] = new Color(255, 242, 230);
@@ -256,6 +280,70 @@ public class SovietUnion {
         skinColors[9] = new Color(153, 71, 0);
         skinColors[10] = new Color(128, 60, 0);
         skinColors[11] = new Color(102, 48, 0);
+    }
+
+    public void setHairColors() {
+        hairColors = new Color[24];
+        hairColors[0] = new Color(9,8,6);
+        hairColors[1] = new Color(44,34,43);
+        hairColors[2] = new Color(113,99,90);
+        hairColors[3] = new Color(183,166,158);
+        hairColors[4] = new Color(214,196,194);
+        hairColors[5] = new Color(202,191,177);
+        hairColors[6] = new Color(220,208,186);
+        hairColors[7] = new Color(255,245,225);
+        hairColors[8] = new Color(230,206,168);
+        hairColors[9] = new Color(229,200,168);
+        hairColors[10] = new Color(222,188,153);
+        hairColors[11] = new Color(184,151,120);
+        hairColors[12] = new Color(165,107,70);
+        hairColors[13] = new Color(181,82,57);
+        hairColors[14] = new Color(141,74,67);
+        hairColors[15] = new Color(145,85,61);
+        hairColors[16] = new Color(83,61,50);
+        hairColors[17] = new Color(59,48,36);
+        hairColors[18] = new Color(85,72,56);
+        hairColors[19] = new Color(78,67,63);
+        hairColors[20] = new Color(80,68,68);
+        hairColors[21] = new Color(106,78,66);
+        hairColors[22] = new Color(167,133,106);
+        hairColors[23] = new Color(151,121,97);
+    }
+
+    public void setClothingColors() {
+        clothingColors = new Color[32];
+        clothingColors[0] = new Color(255, 255, 240);
+        clothingColors[1] = new Color(245, 245, 220);
+        clothingColors[2] = new Color(245, 222, 179);
+        clothingColors[3] = new Color(210, 180, 140);
+        clothingColors[4] = new Color(195, 176, 145);
+        clothingColors[5] = new Color(192, 192, 192);
+        clothingColors[6] = new Color(128, 128, 128);
+        clothingColors[7] = new Color(70, 70, 70);
+        clothingColors[8] = new Color(0, 0, 128);
+        clothingColors[9] = new Color(8, 76, 158);
+        clothingColors[10] = new Color(0, 0, 205);
+        clothingColors[11] = new Color(0, 127, 255);
+        clothingColors[12] = new Color(0, 255, 255);
+        clothingColors[13] = new Color(127, 255, 212);
+        clothingColors[14] = new Color(0, 128, 128);
+        clothingColors[15] = new Color(34, 139, 34);
+        clothingColors[16] = new Color(128, 128, 0);
+        clothingColors[17] = new Color(127, 255, 0);
+        clothingColors[18] = new Color(191, 255, 0);
+        clothingColors[19] = new Color(255, 215, 0);
+        clothingColors[20] = new Color(218, 165, 32);
+        clothingColors[21] = new Color(255, 127, 80);
+        clothingColors[22] = new Color(250, 128, 114);
+        clothingColors[23] = new Color(252, 15, 192);
+        clothingColors[24] = new Color(255, 119, 255);
+        clothingColors[25] = new Color(204, 136, 153);
+        clothingColors[26] = new Color(224, 176, 255);
+        clothingColors[27] = new Color(181, 126, 220);
+        clothingColors[28] = new Color(132, 49, 121);
+        clothingColors[29] = new Color(75, 0, 130);
+        clothingColors[30] = new Color(128, 0, 0);
+        clothingColors[31] = new Color(220, 20, 60);
     }
 
     public void setRanks() {
